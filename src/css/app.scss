@@ -1,1 +1,75 @@
 // app global css in SCSS form
+#filter-container #filter-actions .q-btn::before {
+  box-shadow: none !important;
+}
+
+.q-input,
+.q-select {
+  margin: 15px 5px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  padding-bottom: 0px;
+}
+
+#reset-filters,
+#clear-all-btn,
+#clear-btn {
+  border: 1px solid rgba(0, 0, 0, 0.24);
+}
+
+#report-btn .q-icon {
+  margin-right: 8px;
+}
+
+#logo_head .q-img__image {
+  object-fit: contain !important;
+}
+
+.table-title {
+  margin: 25px 0px 15px 0px;
+  margin-bottom: 10px !important;
+  font-weight: bold;
+}
+
+.table-title .title-status-icon {
+  font-size: 18px;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.table-title .title-div {
+  display: inline-flex;
+  padding: 0px 0px 0px 5px;
+}
+
+// vue-tel-input
+#wfilter-deactivate-container .vue-tel-input,
+#filter-container .vue-tel-input {
+  background-color: #f5f5f5;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  margin-top: 15px;
+  margin-right: 5px;
+  border: none;
+  height: 56px;
+}
+
+#wfilter-deactivate-container .vue-tel-input:focus-within,
+#filter-container .vue-tel-input:focus-within {
+  box-shadow: none;
+  border: 2px solid rgb(60, 160, 130);
+}
+
+#wfilter-deactivate-container .vue-tel-input input,
+#filter-container .vue-tel-input input {
+  background-color: #f5f5f5;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.vue-tel-input input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
