@@ -734,7 +734,6 @@ export default {
 
 <style lang="sass">
 .sticky-header-table
-  max height is important
   .q-table__middle
     max-height: 100%
 
@@ -768,7 +767,7 @@ export default {
     /* bg color is important for th; just specify one */
     background-color: #d5e5e1
 
-  div.q-table__middle.scroll table.q-table thead tr th.text-left.sortable.sorted i.material-icons.q-icon.q-table__sort-icon.q-table__sort-icon--left
+  div.q-table__middle.scroll table.q-table thead tr th.text-left.sortable.sorted i.material-icons.q-icon.q-table__sort-icon.q-table__sort-icon--left,
   div.q-table__middle.scroll table.q-table thead tr th.text-left.sortable i.material-icons.q-icon.q-table__sort-icon.q-table__sort-icon--left
     color: #3CA082
 </style>

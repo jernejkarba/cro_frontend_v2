@@ -151,7 +151,8 @@ export default {
   ut_edit_sel: 'Uredi izbrane',
   ut_konsolidacija: 'Konsolidacija',
   ut_stolpci: 'Stolpci',
-
+  kopiraj_ezso: 'Kopiraj EZŠO',
+  
   // NEW USER
   add_user: '+ Dodaj osebo',
   drzavljanstvo: 'Državljanstvo',

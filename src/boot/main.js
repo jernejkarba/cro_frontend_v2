@@ -14,6 +14,7 @@ import VCalendar from 'v-calendar'
 import 'v-calendar/style.css'
 import FileSelector from 'vue-file-selector'
 import Slide from 'vue3-burger-menu'
+import { copyToClipboard } from 'quasar'
 
 export default boot(({ app }) => {
   function mapNotyToQuasar(options = {}) {
@@ -67,6 +68,9 @@ export default boot(({ app }) => {
   app.config.globalProperties.moment = moment
   app.config.globalProperties.token = ''
   app.config.globalProperties.$user_data = reactive({ pravice: {} })
+
+  // copyToClipboard
+  app.config.globalProperties.copyToClipboard = copyToClipboard
 
   // Noty
   app.config.globalProperties.$noty = {

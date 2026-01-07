@@ -372,58 +372,68 @@
             {{ props.row.StopnjaZaupanja }}
           </q-td>
           <q-td key="EZSO" class="link_filter" :props="props">
-            <div>
-              <q-icon
-                class="gdpr-icon"
-                name="verified_user"
-                style="float: right"
-                v-if="props.row.EZSOPrivolitve.length > 2"
-                @click="$emit('openPrivolitveWidget', props.row.EZSO)"
-              >
-                <q-tooltip>
-                  {{ $t('privolitve') }}
-                </q-tooltip>
-              </q-icon>
-              <q-icon
-                v-if="props.row.EZSOPrivolitve === '0'"
-                class="gdpr-icon"
-                name="verified_user"
-                style="color: #c9c9c9; float: right"
-                @click="$emit('openPrivolitveWidget', props.row.EZSO)"
-              >
-                <q-tooltip>
-                  {{ $t('privolitve') }}
-                </q-tooltip>
-              </q-icon>
-              <q-icon
-                v-if="props.row.EZSOPrivolitve === '-2'"
-                class="gdpr-icon"
-                name="mdi-exclamation"
-                style="color: #c10013; float: right; font-size: 14px"
-                @click="$emit('openPrivolitveWidget', props.row.EZSO)"
-              >
-                <q-tooltip>
-                  {{ $t('privolitev_conflict') }}
-                </q-tooltip>
-              </q-icon>
-              <q-icon
-                v-if="props.row.EZSOPrivolitve === '-2'"
-                class="gdpr-icon"
-                name="verified_user"
-                style="float: right"
-                @click="$emit('openPrivolitveWidget', props.row.EZSO)"
-              >
-                <q-tooltip>
-                  {{ $t('privolitve') }}
-                </q-tooltip>
-              </q-icon>
+            <div class="ezso-cell">
+              <!-- EZSO + copy -->
+              <div class="ezso-hover">
+                <span
+                  class="ezso-text"
+                  @click="moveFilter(config.type, 'EZSO', props.row.EZSO)"
+                >
+                  {{ props.row.EZSO }}
+                </span>
+
+                <q-icon
+                  class="copy-icon"
+                  name="content_copy"
+                  @click.stop="copyToClipboard(props.row.EZSO)"
+                >
+                  <q-tooltip>
+                    {{ $t('kopiraj_ezso') }}
+                  </q-tooltip>
+                </q-icon>
+              </div>
+
+              <!-- GDPR ikone (ločeno) -->
+              <div class="gdpr-icons">
+                <q-icon
+                  v-if="props.row.EZSOPrivolitve.length > 2"
+                  class="gdpr-icon"
+                  name="verified_user"
+                  @click="$emit('openPrivolitveWidget', props.row.EZSO)"
+                >
+                  <q-tooltip>{{ $t('privolitve') }}</q-tooltip>
+                </q-icon>
+
+                <q-icon
+                  v-if="props.row.EZSOPrivolitve === '0'"
+                  class="gdpr-icon"
+                  name="verified_user"
+                  style="color: #c9c9c9"
+                  @click="$emit('openPrivolitveWidget', props.row.EZSO)"
+                >
+                  <q-tooltip>{{ $t('privolitve') }}</q-tooltip>
+                </q-icon>
+
+                <q-icon
+                  v-if="props.row.EZSOPrivolitve === '-2'"
+                  class="gdpr-icon"
+                  name="mdi-exclamation"
+                  style="color: #c10013; font-size: 14px"
+                  @click="$emit('openPrivolitveWidget', props.row.EZSO)"
+                >
+                  <q-tooltip>{{ $t('privolitev_conflict') }}</q-tooltip>
+                </q-icon>
+
+                <q-icon
+                  v-if="props.row.EZSOPrivolitve === '-2'"
+                  class="gdpr-icon"
+                  name="verified_user"
+                  @click="$emit('openPrivolitveWidget', props.row.EZSO)"
+                >
+                  <q-tooltip>{{ $t('privolitve') }}</q-tooltip>
+                </q-icon>
+              </div>
             </div>
-            <span
-              style="padding-right: 20px"
-              @click="moveFilter(config.type, 'EZSO', props.row.EZSO)"
-            >
-              {{ props.row.EZSO }}
-            </span>
           </q-td>
           <q-td key="NazivOsebe" class="link_filter" :props="props">
             <div>
@@ -1178,7 +1188,7 @@ export default {
           align: 'left',
           field: 'EZSO',
           sortable: true,
-          style: 'width: 90px',
+          style: 'width: 120px',
         },
         {
           name: 'NazivOsebe',
@@ -1792,8 +1802,9 @@ export default {
           currentKons = item.KD
         })
       }
-      if (this.konsValues.Nacin.value === '1' || this.konsValues.Nacin.value === '8') {
+      if (this.konsValues.Nacin.value === '1' || this.konsValues.Nacin.value === '7' || this.konsValues.Nacin.value === '8') {
         this.data.forEach((item) => {
+          console.log(item)
           if (
             this.konsValues.StopnjaZaupanja.value === '0' &&
             item.DavcnaStevilka !== '' &&
@@ -2257,6 +2268,10 @@ tbody tr.selected.details td {
   right: 0px;
 }
 
+.copy-icon {
+  padding-right: 5px;
+}
+
 .gdpr-icon {
   right: 0px;
   top: -1px;
@@ -2274,6 +2289,51 @@ tbody tr.selected.details td {
   min-height: 30px;
   padding: 0px 10px;
 }
+
+.ezso-text {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ezso-hover:hover .ezso-text {
+  text-decoration: underline;
+}
+
+.ezso-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ezso-hover {
+  display: inline-flex;
+  align-items: center;
+}
+
+.copy-icon {
+  margin-left: 6px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateX(-8px);
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ezso-hover:hover .copy-icon {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.gdpr-icons {
+  display: inline-flex;
+  gap: 4px;
+}
+
 </style>
 
 <style lang="sass">
