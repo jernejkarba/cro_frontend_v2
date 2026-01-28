@@ -71,10 +71,15 @@ export default {
   methods: {
     logout() {
       localStorage.setItem('jwt', '')
-      window.location.replace(import.meta.env.VUE_APP_API_URL + 'Logout.php')
+      // window.location.replace(process.env.VUE_APP_API_URL + 'Logout.php')
+      this.api
+        .post('logout', {})
+        .then((result) => {
+            setTimeout(() => this.$router.push('/login'), 3000)    
+        })
     },
     isDevelopment() {
-      return import.meta.env.MODE === 'development'
+      return process.env.MODE === 'development'
     },
     openReport(type) {
       switch (type) {

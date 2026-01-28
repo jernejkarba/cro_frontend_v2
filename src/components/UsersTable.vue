@@ -304,7 +304,7 @@
           :id="props.row.EZSO"
         >
           <q-td>
-            <q-checkbox v-model="props.selected" color="cro-green" v-if="editable === 12" disable />
+            <q-checkbox v-model="props.selected" color="cro-green" v-if="editable === 1" disable />
             <q-checkbox v-model="props.selected" color="cro-green" v-else />
           </q-td>
           <q-td key="arrow" :props="props">
@@ -1573,6 +1573,8 @@ export default {
               // this.updateAfterEdit(result.data.parameters)
               this.updateAfterEdit(allIds, data.option)
               this.setResponse(result.data)
+              this.selectedUsersLocal = []
+              this.$emit('clearSelectedUsers')
               this.$noty.success(this.$t(result.data.message_key), {
                 killer: true,
                 timeout: 2000,
@@ -1804,7 +1806,6 @@ export default {
       }
       if (this.konsValues.Nacin.value === '1' || this.konsValues.Nacin.value === '7' || this.konsValues.Nacin.value === '8') {
         this.data.forEach((item) => {
-          console.log(item)
           if (
             this.konsValues.StopnjaZaupanja.value === '0' &&
             item.DavcnaStevilka !== '' &&
@@ -2045,8 +2046,20 @@ export default {
   },
 
   watch: {
-    data: function (newVal) {
-      this.selectedUsersLocal = []
+    data (newVal, oldVal) {
+      if (!Array.isArray(oldVal)) return
+
+      const oldKeys = oldVal.map(r => r.EZSO)
+      const newKeys = newVal.map(r => r.EZSO)
+
+      const changed =
+        oldKeys.length !== newKeys.length ||
+        oldKeys.some(k => !newKeys.includes(k))
+
+      if (changed) {
+        this.selectedUsersLocal = []
+      }
+
       if (this.config.type === 'selected') {
         if (this.data.length === 0) {
           this.clearEdit()
@@ -2081,7 +2094,7 @@ export default {
         }
       }
     },
-    editable: function (newVal) {
+    editable: function (newVal, oldVal) {
       if (!newVal) {
         this.closeEditRow()
         this.konsDisabled = false

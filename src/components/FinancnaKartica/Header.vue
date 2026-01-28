@@ -26,7 +26,12 @@ export default {
   methods: {
     logout() {
       localStorage.setItem('jwt', '')
-      window.location.replace(import.meta.env.VUE_APP_API_URL + 'Logout.php?fk')
+      // window.location.replace(import.meta.env.VUE_APP_API_URL + 'Logout.php?fk')
+      this.api
+        .post('logout', {})
+        .then((result) => {
+            setTimeout(() => this.$router.push('/login'), 3000)    
+        })
     },
   },
 }

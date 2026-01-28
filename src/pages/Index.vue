@@ -63,6 +63,7 @@
       @closeSifrantNaslovovDialog="closeSifrantNaslovovDialog($event)"
       @sendMessage="sendMessage($event)"
       @setEditable="setEditable($event)"
+      @clearSelectedUsers="clearSelectedUsers"
       :data="selectedTableData.slice(0, 100)"
       :fullData="selectedTableData"
       :config="tableSelectedConfig"
@@ -1706,6 +1707,10 @@ export default {
           theme: 'metroui',
         })
       }
+    },
+
+    clearSelectedUsers() {
+      this.selectedSelectedUsers = []
     },
 
     clearSifrantNaslovovValues() {
