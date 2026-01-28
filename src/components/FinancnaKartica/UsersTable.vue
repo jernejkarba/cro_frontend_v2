@@ -36,13 +36,7 @@
       :config="config"
       :loading="loading"
       :columns="columns"
-      :selected="selectedUsersLocal"
-      @update:selected="
-        (val) => {
-          selectedUsersLocal = val
-          $emit('update:selectedUsers', Array.isArray(val) ? val : [])
-        }
-      "
+      v-model:selected="selectedUsersLocal"
       v-model:pagination="pagination"
       v-model:expanded="expanded"
       :rows-per-page-options="[6]"
@@ -77,7 +71,11 @@
           :id="props.row.EZSO"
         >
           <q-td>
-            <q-checkbox v-model="props.selected" color="cro-green" />
+            <q-checkbox
+              color="cro-green"
+              :model-value="props.selected"
+              @update:model-value="val => props.selected = val"
+            />
           </q-td>
           <q-td key="arrow" :props="props">
             <q-icon
@@ -87,8 +85,8 @@
               @click="
                 $emit('selectUser', {
                   user: props.row,
-                  pagination: pagination,
-                  selectedUsers: selectedUsers,
+                  pagination: { ...pagination },
+                  selectedUsers: [...selectedUsers],
                 })
               "
             />
@@ -502,12 +500,18 @@ export default {
       this.pagination.maxPages = Math.ceil(this.total / this.rowsPerPage)
       this.pagination.multisort = false
 
-      this.$emit('filterData', { filters: this.pagination, selectedUsers: this.selectedUsers })
+      this.$emit('filterData', {
+        filters: { ...this.pagination },
+        selectedUsers: [...this.selectedUsers]
+      })
     },
 
     onPageSwitch(page) {
       this.pagination.page = page
-      this.$emit('filterData', { filters: this.pagination, selectedUsers: this.selectedUsers })
+      this.$emit('filterData', {
+        filters: { ...this.pagination },
+        selectedUsers: [...this.selectedUsers]
+      })
     },
 
     highlightRow(id, expand) {
@@ -532,12 +536,12 @@ export default {
   },
 
   watch: {
-    selectedUsers: function (newVal) {
+    selectedUsers(newVal) {
       this.selectedUsersLocal = Array.isArray(newVal) ? [...newVal] : []
-      if (this.config.type === 'selected') {
-        this.$emit('checkUser', this.selectedUsersLocal)
-      }
     },
+    selectedUsersLocal (val) {
+      this.$emit('update:selectedUsers', Array.isArray(val) ? val : [])
+    }
   },
 
   mounted() {

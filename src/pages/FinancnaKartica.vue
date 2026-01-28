@@ -294,7 +294,10 @@ export default {
         this.selectedTableData = [...this.selectedTableData, data.user]
         this.selectedSelectedUsers = this.selectedSelectedUsers.concat(data.user)
       }
-      this.filterUsers({ filters: data.pagination, selectedUsers: [] })
+      // this.filterUsers({ filters: data.pagination, selectedUsers: [] })
+      this.$nextTick(() => {
+        this.filterUsers({ filters: data.pagination, selectedUsers: [] })
+      })
     },
 
     clearUsers(users) {
