@@ -240,7 +240,7 @@
       row-key="EZSO"
       selection="multiple"
       :loading="loading"
-      :rows="Array.isArray(data) ? data : []"
+      :rows="uniqueData"
       :columns="columns"
       :visible-columns="config.visibleColumns"
       :selected="selectedUsersLocal"
@@ -334,7 +334,7 @@
                 moveFilter(
                   config.type,
                   'KonsolidacijskaDavcnaStevilka',
-                  props.row.KonsolidacijskaDavcnaStevilka
+                  props.row.KonsolidacijskaDavcnaStevilka,
                 )
               "
             >
@@ -375,10 +375,7 @@
             <div class="ezso-cell">
               <!-- EZSO + copy -->
               <div class="ezso-hover">
-                <span
-                  class="ezso-text"
-                  @click="moveFilter(config.type, 'EZSO', props.row.EZSO)"
-                >
+                <span class="ezso-text" @click="moveFilter(config.type, 'EZSO', props.row.EZSO)">
                   {{ props.row.EZSO }}
                 </span>
 
@@ -1429,6 +1426,20 @@ export default {
     }
   },
 
+  computed: {
+    uniqueData() {
+      if (!Array.isArray(this.data)) return []
+      const seen = new Set()
+      return this.data.filter(item => {
+        if (seen.has(item.EZSO)) {
+          return false
+        }
+        seen.add(item.EZSO)
+        return true
+      })
+    }
+  },
+
   methods: {
     moveSelectedUsers() {
       this.$emit('selectUsers', { users: this.selectedUsers, pagination: this.pagination })
@@ -1628,6 +1639,8 @@ export default {
     },
 
     refreshSelectedUsers() {
+      this.clearKons()
+      this.selectedUsersLocal = []
       this.$emit('refreshSelectedUsers')
     },
 
@@ -1804,7 +1817,11 @@ export default {
           currentKons = item.KD
         })
       }
-      if (this.konsValues.Nacin.value === '1' || this.konsValues.Nacin.value === '7' || this.konsValues.Nacin.value === '8') {
+      if (
+        this.konsValues.Nacin.value === '1' ||
+        this.konsValues.Nacin.value === '7' ||
+        this.konsValues.Nacin.value === '8'
+      ) {
         this.data.forEach((item) => {
           if (
             this.konsValues.StopnjaZaupanja.value === '0' &&
@@ -2046,15 +2063,13 @@ export default {
   },
 
   watch: {
-    data (newVal, oldVal) {
+    data(newVal, oldVal) {
       if (!Array.isArray(oldVal)) return
 
-      const oldKeys = oldVal.map(r => r.EZSO)
-      const newKeys = newVal.map(r => r.EZSO)
+      const oldKeys = oldVal.map((r) => r.EZSO)
+      const newKeys = newVal.map((r) => r.EZSO)
 
-      const changed =
-        oldKeys.length !== newKeys.length ||
-        oldKeys.some(k => !newKeys.includes(k))
+      const changed = oldKeys.length !== newKeys.length || oldKeys.some((k) => !newKeys.includes(k))
 
       if (changed) {
         this.selectedUsersLocal = []
@@ -2346,7 +2361,6 @@ tbody tr.selected.details td {
   display: inline-flex;
   gap: 4px;
 }
-
 </style>
 
 <style lang="sass">

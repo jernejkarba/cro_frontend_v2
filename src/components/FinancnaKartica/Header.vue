@@ -25,12 +25,15 @@ export default {
 
   methods: {
     logout() {
-      localStorage.setItem('jwt', '')
-      // window.location.replace(import.meta.env.VUE_APP_API_URL + 'Logout.php?fk')
       this.api
-        .post('logout', {})
+        .post('Logout', {})
         .then((result) => {
-            setTimeout(() => this.$router.push('/login'), 3000)    
+          localStorage.setItem('jwt', '')
+          window.location.href = process.env.VUE_APP_KEYCLOAK_LOGOUT + '/financna-kartica'
+        })
+        .catch((err) => {
+          console.error('Logout failed:', err)
+          alert('Prišlo je do napake pri odjavi')
         })
     },
   },

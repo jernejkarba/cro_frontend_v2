@@ -42,7 +42,7 @@
           :props="props"
           :key="props.row.ID"
           :id="props.row.ID"
-          v-if="props.row.Privolitev === 'NT' && showNT"
+          v-if="props.row.Privolitev === 'NT' && props.row.NTProf !== '-1' && showNT"
         >
           <q-td key="Naziv" :props="props" style="cursor: pointer"> Neposredno trženje </q-td>
           <q-td key="Privolitev" :props="props">
@@ -381,7 +381,7 @@
           :props="props"
           :key="props.row.ID"
           :id="props.row.ID"
-          v-if="props.row.Privolitev === 'POSPAR' && showPOSPAR"
+          v-if="props.row.Privolitev === 'POSPAR' && props.row.NTPosPar !== '-1' && showPOSPAR"
         >
           <q-td key="Naziv" :props="props" style="cursor: pointer"> Poslovni partnerji </q-td>
           <q-td key="Privolitev" :props="props">
@@ -720,7 +720,9 @@
           :props="props"
           :key="props.row.ID"
           :id="props.row.ID"
-          v-if="props.row.Privolitev === 'soglasje' && showESoglasja"
+          v-if="
+            props.row.Privolitev === 'soglasje' && props.row.ESoglasja !== '-1' && showESoglasja
+          "
         >
           <q-td key="Naziv" :props="props" style="cursor: pointer">
             E-soglasje
@@ -1018,8 +1020,8 @@ export default {
             return x['Privolitev'] > y['Privolitev']
               ? 1
               : x['Privolitev'] < y['Privolitev']
-              ? -1
-              : 0
+                ? -1
+                : 0
           }
         })
       }

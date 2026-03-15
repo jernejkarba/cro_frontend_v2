@@ -4,6 +4,11 @@
       <q-toolbar-title>
         <q-img id="logo_head" src="logo-sava-cro.png" style="width: 48px; height: 48px" />
         {{ $t('title') }}
+        <!--
+        <div style="color: red; font-weight: bold; display: inline; margin-left: 50px">
+          PRODUKCIJSKA BAZA
+        </div>
+        -->
       </q-toolbar-title>
       <q-btn
         id="report-btn"
@@ -70,12 +75,15 @@ export default {
 
   methods: {
     logout() {
-      localStorage.setItem('jwt', '')
-      // window.location.replace(process.env.VUE_APP_API_URL + 'Logout.php')
       this.api
-        .post('logout', {})
+        .post('Logout', {})
         .then((result) => {
-            setTimeout(() => this.$router.push('/login'), 3000)    
+          localStorage.setItem('jwt', '')
+          window.location.href = process.env.VUE_APP_KEYCLOAK_LOGOUT
+        })
+        .catch((err) => {
+          console.error('Logout failed:', err)
+          alert('Prišlo je do napake pri odjavi')
         })
     },
     isDevelopment() {
@@ -86,20 +94,20 @@ export default {
         case 1:
           window.open(
             'https://mimo.zav-sava.si/MicroStrategy/asp/Main.aspx?evt=4001&src=Main.aspx.4001&visMode=0&reportViewMode=1&reportID=0119A2C44009E59851B8E781564802AB&Server=SRV-MICROS-APP&Project=Konsolidacija%20oseb&Port=0&share=1',
-            '_blank'
+            '_blank',
           )
           break
         case 2:
           window.open(
             'https://mimo.zav-sava.si/MicroStrategy/asp/Main.aspx?evt=4001&src=Main.aspx.4001&visMode=0&reportViewMode=1&reportID=EBE4FB3B4037FFA99B8BB38648421A96&Server=SRV-MICROS-APP&Project=Konsolidacija%20oseb&Port=0&share=1',
-            '_blank'
+            '_blank',
           )
           break
         case 3:
           // window.open('https://mimo.zav-sava.si/MicroStrategy/servlet/mstrWeb?evt=4001&src=mstrWeb.4001&visMode=0&reportViewMode=1&reportID=2C3335F6478881289DEDA1AF31828219&Server=SRV-MSTRAT-INT.ZAV-MB.LOC&Project=Konsolidacija%20oseb&Port=0&share=1', '_blank')
           window.open(
             'https://mimo.zav-sava.si/MicroStrategy/servlet/mstrWeb?evt=4001&src=mstrWeb.4001&visMode=0&reportViewMode=1&reportID=2C3335F6478881289DEDA1AF31828219&Server=S-MSTRAT-INT.ZAV-MB.LOC&Project=Konsolidacija%20oseb&Port=0&share=1',
-            '_blank'
+            '_blank',
           )
           break
       }

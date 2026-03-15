@@ -1453,7 +1453,10 @@ export default {
       this.editOK = true
       let currentEdit = '-1'
       this.selectedSelectedUsers.forEach((item) => {
-        if ((item.KD === null && item.DavcnaStevilka != 0) || (item.KD !== currentEdit && currentEdit !== '-1')) {
+        if (
+          /*(item.KD === null && item.DavcnaStevilka != 0) ||*/ item.KD !== currentEdit &&
+          currentEdit !== '-1'
+        ) {
           this.editOK = false
         }
         currentEdit = item.KD
