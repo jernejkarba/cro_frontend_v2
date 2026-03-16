@@ -373,6 +373,23 @@
           </q-td>
           <q-td key="EZSO" class="link_filter" :props="props">
             <div class="ezso-cell">
+              <q-icon
+                class="move-arrow"
+                :name="
+                  props.row.OsebaID !== null && props.row.OsebaID !== ''
+                    ? 'img:check.svg'
+                    : 'img:minus.svg'
+                "
+              >
+                <q-tooltip>
+                  {{
+                    props.row.OsebaID !== null && props.row.OsebaID !== ''
+                      ? $t('je_migriran')
+                      : $t('ni_migriran')
+                  }}
+                </q-tooltip>
+              </q-icon>
+
               <!-- EZSO + copy -->
               <div class="ezso-hover">
                 <span class="ezso-text" @click="moveFilter(config.type, 'EZSO', props.row.EZSO)">

@@ -19,7 +19,8 @@ export default {
   stopnja_zaupanja_hint: 'Stopnja zaupanja v konsolidacijsko davčno številko',
   stopnja_pravilnosti: 'Stopnja pravilnosti',
   stopnja_pravilnosti_short: 'P',
-  stopnja_pravilnosti_hint: 'Stopnja pravilnosti podatkov osebe: 1 - davčna pravilna, 2 - EMŠO pravilen, 3 - davčna in EMŠO pravilna',
+  stopnja_pravilnosti_hint:
+    'Stopnja pravilnosti podatkov osebe: 1 - davčna pravilna, 2 - EMŠO pravilen, 3 - davčna in EMŠO pravilna',
   dt_rojstva: 'Datum roj.',
   ulica: 'Ulica',
   hisna_st_short: 'HŠ',
@@ -78,13 +79,15 @@ export default {
   posta_format: 'Poštna št.: nepravilen format!',
   email_format: 'Email: nepravilen format!',
   osebe_empty: 'Izberite vsaj eno osebo!',
-  big_data_message: 'Zaradi velikega štrevila oseb na konsolidacisjki davčni številki se je v Izbor preneslo zgolj 100 oseb. Vse akcije se bodo izvedle na vseh osebah. Teh je ',
+  big_data_message:
+    'Zaradi velikega štrevila oseb na konsolidacisjki davčni številki se je v Izbor preneslo zgolj 100 oseb. Vse akcije se bodo izvedle na vseh osebah. Teh je ',
   drzava_empty: 'Država: polje je obvezno!',
   ulica_empty: 'Ulica: polje je obvezno in mora biti daljše od dveh znakov!',
   naselje_empty: 'Naselje: polje je obvezno in mora biti daljše od dveh znakov!',
   postna_st_empty: 'Poštna številka: polje je obvezno!',
   postna_st_false: 'Poštna številka: izbrana številka ne obstaja v bazi šifrantov',
-  address_combination_false: 'Kombinacija ulice, naselja in poštne številke ne obstaja v bazi šifrantov',
+  address_combination_false:
+    'Kombinacija ulice, naselja in poštne številke ne obstaja v bazi šifrantov',
   razdelilnik_empty: 'Razdelilnik je prazen!',
   kontakt_empty: 'Kontakt je prazen! Če želite izbrisati podatek, v polje vnesite vrednost *.',
   dt_rojstva_future: 'Datum rojstva: Datum ne sme biti v prihodnosti',
@@ -93,18 +96,25 @@ export default {
   dt_smrti_rojstva: 'Datum smrti: Datum ne sme biti pred datumom rojstva',
   naselje_obcina_false: 'Izbrano Naselje ne obstaja v izbrani občini',
 
+  je_migriran: 'Oseba, je migrirana v novi RO',
+  ni_migriran: 'Oseba, še ni migrirana v novi RO',
+  ne_bo_migriran: 'Oseba, ne bo migrirana v novi RO',
+
   // - stopnja zaupanja
   e_PodvajanjeDavcne: 'Podvajanje davčne številke',
   e_DavcnaNiKons: 'Ponujena davčna številka še ni uporabljena pri konsolidaciji oseb.',
   e_StopnjaZaupNic: 'Stopnja zaupanj naj ne bo 0',
   e_napaka_sz: 'Napaka pri spremembi stopnje zaupanja',
   sz_format: 'Stopnja zaupanja: format ni pravilen',
-  stopnjaZaup_success: 'Stopnja zaupanja uspešno spremenjena za izbrane konsolidacijske davčne številke',
+  stopnjaZaup_success:
+    'Stopnja zaupanja uspešno spremenjena za izbrane konsolidacijske davčne številke',
 
   // - odstrani šifre
-  e_EZSOjiVecOseb: 'Zahtevano je odstranjevanje šifer (EZŠO-jev) večih oseb. Dovoljeno je sočasno odstranjevanje šifer za zgolj eno osebo.',
+  e_EZSOjiVecOseb:
+    'Zahtevano je odstranjevanje šifer (EZŠO-jev) večih oseb. Dovoljeno je sočasno odstranjevanje šifer za zgolj eno osebo.',
   e_EZSO_NiZdruzen: 'Zahtevano je odstranjevanje EZŠO-ja, ki ni konsolidiran.',
-  e_OdstraniZaklEZSO: 'Zahtevano je odstranjevanje EZŠO-jev za zaklenjeno davčno številko. Davčna številka je zaklenjena če je stopnja zaupanja konsolidacije večja od 1.',
+  e_OdstraniZaklEZSO:
+    'Zahtevano je odstranjevanje EZŠO-jev za zaklenjeno davčno številko. Davčna številka je zaklenjena če je stopnja zaupanja konsolidacije večja od 1.',
   e_napaka_os: 'Napaka pri odstranitvi šifre',
   odstraniSifre_success: 'Uspešno odstranjene šifre (EZŠO-ji) iz konsolidirane skupine šifer',
 
@@ -112,15 +122,19 @@ export default {
   davcna_empty: 'Davčna številka: polje mora biti izpolnjeno',
   nova_davcna_empty: 'Nova davčna številka: polje mora biti izpolnjeno',
   nova_davcna_equals: 'Nova davčna številka je enaka stari davčni številki',
-  e_nova_davcna_success: 'Davčna številka, ki je uporabljena za konsolidacijo EZŠO-jev je popravljena',
-  e_DavcnaZeUporabljena: 'Nova davčna številka je že uporabljena kot konsolidacijska davčna številka pri drugi osebi.',
+  e_nova_davcna_success:
+    'Davčna številka, ki je uporabljena za konsolidacijo EZŠO-jev je popravljena',
+  e_DavcnaZeUporabljena:
+    'Nova davčna številka je že uporabljena kot konsolidacijska davčna številka pri drugi osebi.',
   e_napaka_nd: 'Napaka pri Novi davčni številki',
 
   // - konsolidacija
   konsolidacija_komentar: 'Dodaten opis',
   e_NeveljavnaDavcna: 'Davčna številka ni veljavna za dano stopnjo zaupranja.',
-  e_VecVeljavnihDavcnih: 'Želimo konsolidirati iste ID-je osebe s stopnjo zaupanja večjo od 2, posamezni ID-ji pa vsebujejo več davčnih številk oz. vsaj en ID osebe vsebuje davčno številko, ki je različna od želene konsolidacijske davčne številke.',
-  e_EZSO_JeZeZdruzen: 'Vsaj eden od ID-jev (EZŠO-jev) osebe je že konsolidiran z drugo konsolidacijsko davčno številko.',
+  e_VecVeljavnihDavcnih:
+    'Želimo konsolidirati iste ID-je osebe s stopnjo zaupanja večjo od 2, posamezni ID-ji pa vsebujejo več davčnih številk oz. vsaj en ID osebe vsebuje davčno številko, ki je različna od želene konsolidacijske davčne številke.',
+  e_EZSO_JeZeZdruzen:
+    'Vsaj eden od ID-jev (EZŠO-jev) osebe je že konsolidiran z drugo konsolidacijsko davčno številko.',
   e_EZSO_NapacnaVrsta: 'Vnešena je napačna vrsta osebe.',
   e_kons_allready: 'Vnosne šifre (EZŠO-ji) osebe so že skonsolidirane.',
   e_napaka_kon: 'Napaka pri Konsolidaciji',
@@ -152,7 +166,7 @@ export default {
   ut_konsolidacija: 'Konsolidacija',
   ut_stolpci: 'Stolpci',
   kopiraj_ezso: 'Kopiraj EZŠO',
-  
+
   // NEW USER
   add_user: '+ Dodaj osebo',
   drzavljanstvo: 'Državljanstvo',
@@ -182,8 +196,10 @@ export default {
   drzava_rojstva: 'Država rojstva',
 
   // VALIDATION
-  invalid_dt_rojstva: 'Datum rojstva je vpisan v napačnem formatu. Vpišite datum v formatu: DD.MM.YYYY, ali uporabite okno za izbor datuma.',
-  invalid_dt_smrti: 'Datum smrti je vpisan v napačnem formatu. Vpišite datum v formatu: DD.MM.YYYY, ali uporabite okno za izbor datuma.',
+  invalid_dt_rojstva:
+    'Datum rojstva je vpisan v napačnem formatu. Vpišite datum v formatu: DD.MM.YYYY, ali uporabite okno za izbor datuma.',
+  invalid_dt_smrti:
+    'Datum smrti je vpisan v napačnem formatu. Vpišite datum v formatu: DD.MM.YYYY, ali uporabite okno za izbor datuma.',
   invalid_address: 'Naslov osebe je nepopoln. Vpišite vse potrebne podatke.',
   postnaSt_required: 'Podatek o poštni številki je obvezen.',
 
@@ -193,15 +209,19 @@ export default {
 
   tip_check_error: 'Prišlo je do napake pri preverjanju tipa osebe.',
   tip_ezso_error: 'Napačen ID osebe (EZŠO). V CRO ne obstaja oseba z danim ID-jem (EZŠO-jem).',
-  tip_error: 'Napačen tip (pravni status) osebe. Dovoljene so vrednosti: 1-pravna pravna, 2-fizična, ?-nedoločena.',
+  tip_error:
+    'Napačen tip (pravni status) osebe. Dovoljene so vrednosti: 1-pravna pravna, 2-fizična, ?-nedoločena.',
   tip_vrsta_error: 'Na ID-ju (EZŠO-ju) osebe smo naleteli na neveljavno vrsto osebe.',
-  tip_not_allowed_error: 'Tip osebe ni dovolje za vrsto osebe, npr. tip osebe 1 (pravna) ni dovoljen za vrsto osebe FIZ (fizična), tip osebe 2 (fizična) ni dovoljen za vrsto osebe S.P. (samostojni podjetnik)',
+  tip_not_allowed_error:
+    'Tip osebe ni dovolje za vrsto osebe, npr. tip osebe 1 (pravna) ni dovoljen za vrsto osebe FIZ (fizična), tip osebe 2 (fizična) ni dovoljen za vrsto osebe S.P. (samostojni podjetnik)',
 
   // UPDATE USERS
   update_success: 'Uspešno ste posodobili izbrane osebe!',
   update_error: 'Napaka pri posodobitvi oseb!',
-  editable_false: 'Urejanje podatkov oseb z različnimi konsolidacijskimi davčnimi številkami ni mogoče!',
-  edit_warning: 'Urejanje nekonsolidiranih oseb in oseb z različnimi konsolidacijskimi davčnimi številkami ni mogoče!',
+  editable_false:
+    'Urejanje podatkov oseb z različnimi konsolidacijskimi davčnimi številkami ni mogoče!',
+  edit_warning:
+    'Urejanje nekonsolidiranih oseb in oseb z različnimi konsolidacijskimi davčnimi številkami ni mogoče!',
 
   // SORT
   clear_sort: 'Počisti',
@@ -214,7 +234,8 @@ export default {
   kons_nacin: 'Zagon',
   kons_neskladnost_izbira: 'Izbira neskladnosti',
   kons_opis: 'Opis',
-  kons_warning_1: 'Akcija nad osebami z različnimi konsolidacijskimi davčnimi številkami ni mogoča!',
+  kons_warning_1:
+    'Akcija nad osebami z različnimi konsolidacijskimi davčnimi številkami ni mogoča!',
   kons_warning_2: 'Osebe z vpisano davčno številko ni mogoče shraniti na fiktivno davčno številko!',
 
   // AUDIT-TRAIL
@@ -259,7 +280,8 @@ export default {
   spol_required: 'Podatek o spolu je pri fizični osebi obvezen.',
 
   // ŠIFRANT NASLOVOV
-  sifrant_info_note: 'Iščete lahko po katerikoli kombinaciji ulice, naselja in poštne številke. Več znakov v iskalnem nizu nadomestite z znakom %.',
+  sifrant_info_note:
+    'Iščete lahko po katerikoli kombinaciji ulice, naselja in poštne številke. Več znakov v iskalnem nizu nadomestite z znakom %.',
   SN_table_title: 'POŠTE, NASELJA IN ULICE',
   empty_sn_filters: 'Vnesite vsaj en iskan parameter!',
   select: 'Izberi',
@@ -311,15 +333,18 @@ export default {
   fk_dt_placil_do: 'Dt. plačil do',
   fk_fakture_saldo_ni_nic: 'Vse police ter fakture s saldom',
   fk_za_obdobje: 'Za obdobje',
-  fk_dt_sklenitve_error: 'Napaka pri izbiri datumov za obdobje sklenitve. Dt. sklenitve od ne sme biti večji od Dt. sklenitve do.',
-  fk_dt_placil_error: 'Napaka pri izbiri datumov za obdobje plačil. Dt. plačil od ne sme biti večji od Dt. plačil do.',
+  fk_dt_sklenitve_error:
+    'Napaka pri izbiri datumov za obdobje sklenitve. Dt. sklenitve od ne sme biti večji od Dt. sklenitve do.',
+  fk_dt_placil_error:
+    'Napaka pri izbiri datumov za obdobje plačil. Dt. plačil od ne sme biti večji od Dt. plačil do.',
 
   // eCRP
   reason_title: 'Vpišite vzrok vpogleda v eCRP',
   reference_title: 'Vpišite namem vpogleda v eCRP',
   reason: 'Razlog vpogleda',
   invalid_vzrok: 'Vzrok je napačen. Izberite/Vpišite pravilen vzrok.',
-  name_conflict_title: 'Izbrana oseba ima v imenu oz./ali v priimku več besed. Pred nadaljavanjem podatke preverite in po potrebi uredite.',
+  name_conflict_title:
+    'Izbrana oseba ima v imenu oz./ali v priimku več besed. Pred nadaljavanjem podatke preverite in po potrebi uredite.',
   firstname: 'Ime',
   lastname: 'Priimek',
   invalid_name: 'Naziv izbrane osebe je daljši od 4 besed, kar ni v skladu s podatki v eCrp.',
@@ -330,13 +355,15 @@ export default {
   res_updated: 'Podatki so se spremenili',
   oznaka: 'Enolična oznaka',
   oznaka_title: 'Vpišite enolično oznako',
-  reason_help: 'Prosimo navedite razlog vpogleda. Primer: škodni primer, mail stranke, telefonski klic stranke, ...',
-  oznaka_help: 'Prosimo navedite enolično oznako primera, za katerega se izvaja poizvedba. Primer: OPI-25/2023, 640-0123456, ...',
+  reason_help:
+    'Prosimo navedite razlog vpogleda. Primer: škodni primer, mail stranke, telefonski klic stranke, ...',
+  oznaka_help:
+    'Prosimo navedite enolično oznako primera, za katerega se izvaja poizvedba. Primer: OPI-25/2023, 640-0123456, ...',
 
   // eCRP - status prebivališča
   noneinrs: 'Nima prebivališča v RS',
   permanent: 'Ima samo stalno prebivališče',
   temporary: 'Ima samo začasno prebivališče',
   permanentandtemporary: 'Ima stalno in začasno prebivališče',
-  notdefined: 'Status prebivališča ni razčiščen'
+  notdefined: 'Status prebivališča ni razčiščen',
 }
