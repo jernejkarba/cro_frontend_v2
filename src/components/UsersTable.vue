@@ -1430,14 +1430,14 @@ export default {
     uniqueData() {
       if (!Array.isArray(this.data)) return []
       const seen = new Set()
-      return this.data.filter(item => {
+      return this.data.filter((item) => {
         if (seen.has(item.EZSO)) {
           return false
         }
         seen.add(item.EZSO)
         return true
       })
-    }
+    },
   },
 
   methods: {
@@ -1997,7 +1997,6 @@ export default {
               this.ecrpReasonData.vzrokDrugo = ''
               this.ecrpReasonData.oznaka = ''
               this.ecrpNamenData.value = null
-              this.ecrpReason = ''
 
               if (this.ecrpFields !== '' && !result.data.changes) {
                 this.sendMessage({ msg: 'res_identical', fields: null })
@@ -2020,7 +2019,6 @@ export default {
               this.ecrpReasonData.vzrokDrugo = ''
               this.ecrpReasonData.oznaka = ''
               this.ecrpNamenData.value = null
-              this.ecrpReason = ''
 
               this.sendMessage({ msg: result.data.message_key, fields: null })
             }
